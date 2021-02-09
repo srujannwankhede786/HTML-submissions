@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Connection</title>
+        <style>
+            body{
+                text-align: center;
+                background-color: #EED426;
+            }
+            .heading{
+                color: #006666;
+                font-family: Verdana;
+            }
+            .main-table{
+                margin: auto;
+                text-align: left;
+                display: inline;
+            }
+            .rental-table{
+                border-style: solid; float: right; text-align: center;
+            }
+            
+        </style>
+    </head>
+
+    <body>
+        <h1>ACBT Connection Portal</h1>
+        <form>
+            <table class="main-table">
+                <tr>
+                    <td>Customer Name</td>
+                    <td><input type="text" id="custname" placeholder="Enter the customer name" required ></td>
+                </tr>   
+                <tr>
+                    <td>Customer Email</td>
+                    <td><input type="email" id="email" placeholder="abc@gmail.com" required></td>
+                </tr>
+                <tr>    
+                    <td>Mobile Number</td>
+                    <td><input type="number" id="mobile" placeholder="Enter the Mobile Number" max="10" pattern="[789]{1}[0-9]{9}" required></td>
+                </tr>
+                <tr>
+                    <td>Type of Broadband</td>
+                    <td>
+                        <select id="connectiontype" name="conntype">
+                            <option value="Pre" id="Pre">Pre</option>
+                            <option value="Post" id="Post">Post</option>
+                          </select>
+                    </td>
+                    
+                </tr>
+                <tr>
+                    <td>Scheme Name</td>
+                    <td>
+                        <form name="radio-button" >
+                            <input type="radio" value="Local" id="scheme1" >
+                            <label>Local</label>
+                            
+                            <input type="radio" value="STD" id="scheme2">
+                            <label>STD</label>
+                            
+                            <input type="radio" value="FullTalkTime" id="scheme3">
+                            <label>FullTalkTime</label>
+                        </form>
+                    </td>
+                    
+                </tr>
+                <tr>
+                    <td>Connection Duration</td>
+                    <td>
+                        <input type="number" min="1" max="12" id="duration" required>
+                    </td>
+                </tr>
+                <tr colspan="2">
+                    <td><input type="button" value="calculate bill" onclick="TotalRental()" id = "submit"></td>
+                    <td><button type="reset" id ="clear">Reset</button></td>
+                    
+                </tr>
+                
+                
+            
+            </table>
+        </form>
+        <div id="result"></div><br>
+        <div></div><br>
+        
+        <table border="1" name="Rental cost Table" id="rentalcost" value="rentalcost" >
+            <thead>
+                <th>Connection Type</th>
+                <th>Limit</th>
+                <th>Monthly Rental</th>
+            </thead>
+            <tr>
+                <td>Pre</td>
+                <td>500</td>
+                <td>75</td>
+            </tr>
+            <tr>
+                <td>Post</td>
+                <td>Unlimited</td>
+                <td>150</td>
+            </tr>
+
+        </table>
+
+    <script>
+            function TotalRental()
+            
+            {
+                
+               var month=document.getElementById("duration").value;
+                var conn=document.getElementById("connectiontype");
+                console.log(conn);
+                var cm=0;
+                var mr=0;
+                
+                    if(document.getElementById("scheme1").checked)
+                    {
+                        cm=200;
+                    }
+                    if(document.getElementById("scheme2").checked)
+                    {
+                      cm=350;
+                    }
+                    if(document.getElementById("scheme3").checked)
+                    {
+                      cm=500;
+                    }
+                    if(conn.value=="Pre")
+                    {
+                        mr=75;
+                    }
+                    if(conn.value=="Post")
+                    {
+                        mr=150;
+                    }
+                var resultt=((month*cm)+mr);
+                document.getElementById("result").innerHTML= "The Total Monthly Rental Cost is Rs. "+resultt;
+               
+            }
+
+    </script>
+    
+    </body>
+</html>
